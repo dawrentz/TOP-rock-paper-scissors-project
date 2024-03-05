@@ -19,6 +19,12 @@ function getCompterChoice() {
     return choice;
 }
 
+//allow player to select, normalize selection
+function getPlayerChoice() {
+    let playerChoice = prompt("Choose rock, paper, or scissors: ");
+    return (playerChoice.trim()).toUpperCase();
+}
+
 //let computerSelection = getCompterChoice();
 //console.log("computerSelection: "+computerSelection);
 
@@ -44,22 +50,26 @@ function outcome(player, computer) {
         (player === "PAPER" && computer === "ROCK") ||
         (player === "SCISSORS" && computer === "PAPER")    
     ) {
-        return `${player} beats ${computer}!\n\nYou have choosen... WISELY`;      
+        console.log(`${player} beats ${computer}!\n\nYou have choosen... WISELY`);      
+        return "win";      
     } 
     //lose
     else if ((computer === "ROCK" && player === "SCISSORS") ||
     (computer === "PAPER" && player === "ROCK") ||
     (computer === "SCISSORS" && player === "PAPER")    
     ) {
-        return `${computer} beats ${player}!\n\nYou have choosen... POORLY`;
+        console.log(`${computer} beats ${player}!\n\nYou have choosen... POORLY`);
+        return "loss";
     } 
     //tie
     else if (player === computer) {
-        return `${computer} = ${player}\n\nMEDIOCRE`;
+        console.log(`${computer} = ${player}\n\nMEDIOCRE`);
+        return "tie";
     }
     //error
     else {
-        return '*sigh*\n\nYou may only select "rock", "paper", or "scissors"...\n\nRefresh and try again';
+        console.log('*sigh*\n\nYou may only select "rock", "paper", or "scissors"...\n\nRefresh and try again');
+        return "error";
     }  
 
 }
@@ -67,21 +77,70 @@ function outcome(player, computer) {
 
 function playRound() {
     let computerSelection = getCompterChoice();
-    let playerSelection = prompt("Choose rock, paper, or scissors: ");
-    playerSelection = (playerSelection.trim()).toUpperCase();
-    outcome(playerSelection, computerSelection);
-    alert(outcome(playerSelection, computerSelection));
-
-    return outcome();
+    let playerSelection = getPlayerChoice();
+    return outcome(playerSelection, computerSelection);
 }
 
 function fiveRounds() {
-    playRound();
-    alert(playRound());
-    // playRound();
-    // playRound();
-    // playRound();
-    // playRound();
+    let winCounter = 0;
+    let lossCounter = 0
+    let round;
+    
+    //1
+    round = playRound();
+    if (round === "win") {
+        winCounter = ++winCounter;
+    } 
+    if (round === "loss") {
+        lossCounter = ++lossCounter;
+    };
+    
+    //2
+    round = playRound();
+    if (round === "win") {
+        winCounter = ++winCounter;
+    } 
+    if (round === "loss") {
+        lossCounter = ++lossCounter;
+    };
+
+    //3
+    round = playRound();
+    if (round === "win") {
+        winCounter = ++winCounter;
+    } 
+    if (round === "loss") {
+        lossCounter = ++lossCounter;
+    };
+
+    //4
+    round = playRound();
+    if (round === "win") {
+        winCounter = ++winCounter;
+    } 
+    if (round === "loss") {
+        lossCounter = ++lossCounter;
+    };
+
+    //5
+    round = playRound();
+    if (round === "win") {
+        winCounter = ++winCounter;
+    } 
+    if (round === "loss") {
+        lossCounter = ++lossCounter;
+    };
+
+  
+
+
+    let finalOutcome = (winCounter > lossCounter) ? "You Win!" :
+    (winCounter < lossCounter) ? "You Lose!" :
+    "Tie!";
+
+
+
+    alert(`Wins: ${winCounter}\nLosses: ${lossCounter}\n\n${finalOutcome}` )
 }
 
 fiveRounds();
