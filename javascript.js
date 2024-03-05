@@ -18,6 +18,28 @@ function getCompterChoice() {
 //    return randNum;
 }
 
-console.log(getCompterChoice());
+console.log("getCompterChoice: "+getCompterChoice());
+
+let playerSelection = prompt("Choose rock, paper, or scissors: ");
+
+playerSelection = (playerSelection.trim()).toLowerCase();
+
+console.log(playerSelection);
+
+// let x = +prompt("enter x: ");
+
+// if (x === 1 || x === 2 || x === 3) {x = x;}
+// else {x = +prompt("try again: ");}
+
+// alert(x);
+
+if (playerSelection === "rock" || playerSelection === "paper" || playerSelection === "scissors") {
+    playerSelection = playerSelection;
+} else {
+    playerSelection = prompt("You may only choose rock, paper, or scissors: ");
+}
+
+
+console.log(playerSelection);
 
 
