@@ -5,6 +5,9 @@
 //declare winner
 //let user choose to play again or quit
 
+
+//select random number between 1 and 3
+//assign number as rock, paper or scissors
 function getCompterChoice() {
     let randNum = (Math.floor(Math.random() * 3 + 1));
 
@@ -15,31 +18,47 @@ function getCompterChoice() {
 
     
     return choice;
-//    return randNum;
 }
 
-console.log("getCompterChoice: "+getCompterChoice());
+let computerSelection = getCompterChoice();
+console.log("computerSelection: "+computerSelection);
 
+//allow player to select, normalize selection, and show error
 let playerSelection = prompt("Choose rock, paper, or scissors: ");
-
 playerSelection = (playerSelection.trim()).toLowerCase();
 
-console.log(playerSelection);
+// if (playerSelection === "rock" || playerSelection === "paper" || playerSelection === "scissors") {
+//     playerSelection = playerSelection;
+// } else {
+//     alert("You may only choose rock, paper, or scissors. Refresh and try again.");
+// }
 
-// let x = +prompt("enter x: ");
+console.log("playerSelection: "+playerSelection);
 
-// if (x === 1 || x === 2 || x === 3) {x = x;}
-// else {x = +prompt("try again: ");}
+//group all winning outcomes (same for other)
+//allows error outcome
+//show all choices and outcome
+let outcome;
+if ((playerSelection === "rock" && computerSelection === "scissors") ||
+    (playerSelection === "paper" && computerSelection === "rock") ||
+    (playerSelection === "scissors" && computerSelection === "paper")
+    ) {
+        outcome = "You win!";
+    }
+else if ((playerSelection === "rock" && computerSelection === "paper") ||
+    (playerSelection === "paper" && computerSelection === "scissors") ||
+    (playerSelection === "scissors" && computerSelection === "rock")
+    ) {
+        outcome = "You lose!";
+    }
+else if ((playerSelection === "rock" && computerSelection === "rock") ||
+    (playerSelection === "paper" && computerSelection === "paper") ||
+    (playerSelection === "scissors" && computerSelection === "scissors")
+    ) {
+        outcome = "Tie!";
+    }
+else {outcome = "No contest. You may only choose \"rock\", \"paper\", or \"scissors\". Refresh and try again."}
 
-// alert(x);
-
-if (playerSelection === "rock" || playerSelection === "paper" || playerSelection === "scissors") {
-    playerSelection = playerSelection;
-} else {
-    playerSelection = prompt("You may only choose rock, paper, or scissors: ");
-}
-
-
-console.log(playerSelection);
-
-
+alert("Opponent's choice: " + computerSelection +
+    "\nYour choice: " + playerSelection + 
+    "\n"+outcome);
