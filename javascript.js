@@ -25,25 +25,8 @@ function getPlayerChoice() {
     return (playerChoice.trim()).toUpperCase();
 }
 
-//let computerSelection = getCompterChoice();
-//console.log("computerSelection: "+computerSelection);
-
-//allow player to select, normalize selection
-//let playerSelection = prompt("Choose rock, paper, or scissors: ");
-//playerSelection = (playerSelection.trim()).toUpperCase();
-
-// if (playerSelection === "rock" || playerSelection === "paper" || playerSelection === "scissors") {
-//     playerSelection = playerSelection;
-// } else {
-//     alert("You may only choose rock, paper, or scissors. Refresh and try again.");
-// }
-
-//console.log("playerSelection: "+playerSelection);
-
-//group all winning outcomes (same for other)
-//allows error outcome
-//show all choices and outcome
-
+//group all like outcomes (including user error)
+//log verbose outcome and return simple outcome
 function outcome(player, computer) {
      //win
     if ((player === "ROCK" && computer === "SCISSORS") ||
@@ -74,18 +57,23 @@ function outcome(player, computer) {
 
 }
 
-
+//combine functions for a single round
+//return simple round outcome (to pass to counter)
 function playRound() {
     let computerSelection = getCompterChoice();
+    // console.log(computerSelection); //cheatmode
     let playerSelection = getPlayerChoice();
     return outcome(playerSelection, computerSelection);
 }
 
+
+//plays 5 rounds (no loop)
+//counts only win or loss
+//shows final winner
 function fiveRounds() {
     let winCounter = 0;
     let lossCounter = 0
     let round;
-    
     //1
     round = playRound();
     if (round === "win") {
@@ -94,7 +82,6 @@ function fiveRounds() {
     if (round === "loss") {
         lossCounter = ++lossCounter;
     };
-    
     //2
     round = playRound();
     if (round === "win") {
@@ -103,7 +90,6 @@ function fiveRounds() {
     if (round === "loss") {
         lossCounter = ++lossCounter;
     };
-
     //3
     round = playRound();
     if (round === "win") {
@@ -112,7 +98,6 @@ function fiveRounds() {
     if (round === "loss") {
         lossCounter = ++lossCounter;
     };
-
     //4
     round = playRound();
     if (round === "win") {
@@ -121,7 +106,6 @@ function fiveRounds() {
     if (round === "loss") {
         lossCounter = ++lossCounter;
     };
-
     //5
     round = playRound();
     if (round === "win") {
@@ -131,70 +115,12 @@ function fiveRounds() {
         lossCounter = ++lossCounter;
     };
 
-  
-
-
     let finalOutcome = (winCounter > lossCounter) ? "You Win!" :
     (winCounter < lossCounter) ? "You Lose!" :
     "Tie!";
 
-
-
     alert(`Wins: ${winCounter}\nLosses: ${lossCounter}\n\n${finalOutcome}` )
 }
 
+//call all
 fiveRounds();
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function outcome(player, computer) {
-//     // let message; 
-//     //win
-//     if ((player === "ROCK" && computer === "SCISSORS") ||
-//         (player === "PAPER" && computer === "ROCK") ||
-//         (player === "SCISSORS" && computer === "PAPER")
-//         ) {
-//             let message = `You win! ${player} beats ${computer}.`;
-//             // return `You win! ${player} beats ${computer}.`;
-
-//         }
-
-//         //lose
-//     else if ((player === "ROCK" && computer === "PAPER") ||
-//         (player === "PAPER" && computer === "SCISSORS") ||
-//         (player === "SCISSORS" && computer === "ROCK")
-//         ) { 
-//             let message = `You lose! ${computer} beats ${player}.`;
-//             // return `You lose! ${computer} beats ${player}.`;
-//         }
-        
-//         //tie
-//     else if ((player === "ROCK" && computer === "ROCK") ||
-//         (player === "PAPER" && computer === "PAPER") ||
-//         (player === "SCISSORS" && computer === "SCISSORS")
-//         ) { 
-//             let message = `Tie! ${computer} = ${player}.`;
-//             // return `Tie! ${computer} = ${player}.`;
-//         }
-        
-//         //error
-//     else {
-//         // return "No contest. You may only choose \"rock\", \"paper\", or \"scissors\". Refresh and try again.";
-//         let message = "No contest. You may only choose \"rock\", \"paper\", or \"scissors\". Refresh and try again.";
-//     }
-    
-//     alert(message);
-// }
-
-//outcome();
-
