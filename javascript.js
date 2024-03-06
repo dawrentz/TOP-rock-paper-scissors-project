@@ -1,9 +1,11 @@
 //allow computer to choose random 1-3 at start
 //assign random choice to rock, paper, scissor
 //prompt users to enter rock, paper, or scissors
+//standardize user prompt
 //run through all possibilities with if then
 //declare winner
-//let user choose to play again or quit
+//log result and pass to function for counter
+//run five rounds and display champion
 
 
 //select random number between 1 and 3
@@ -19,21 +21,22 @@ function getCompterChoice() {
     return choice;
 }
 
-//allow player to select, normalize selection
+//allow player to select, standardize selection
 function getPlayerChoice() {
     let playerChoice = prompt("Choose rock, paper, or scissors: ");
     return (playerChoice.trim()).toUpperCase();
 }
 
 //group all like outcomes (including user error)
-//log verbose outcome and return simple outcome
+//alert verbose outcome and return/log simple outcome
 function outcome(player, computer) {
      //win
     if ((player === "ROCK" && computer === "SCISSORS") ||
         (player === "PAPER" && computer === "ROCK") ||
         (player === "SCISSORS" && computer === "PAPER")    
     ) {
-        console.log(`${player} beats ${computer}!\n\nYou have choosen... WISELY`);      
+        console.log("win"); 
+        alert(`${player} beats ${computer}!\n\nYou have choosen... WISELY`);          
         return "win";      
     } 
     //lose
@@ -41,17 +44,20 @@ function outcome(player, computer) {
     (computer === "PAPER" && player === "ROCK") ||
     (computer === "SCISSORS" && player === "PAPER")    
     ) {
-        console.log(`${computer} beats ${player}!\n\nYou have choosen... POORLY`);
+        console.log("loss");
+        alert(`${computer} beats ${player}!\n\nYou have choosen... POORLY`);
         return "loss";
     } 
     //tie
     else if (player === computer) {
-        console.log(`${computer} = ${player}\n\nMEDIOCRE`);
+        console.log("tie");
+        alert(`${computer} = ${player}\n\nMEDIOCRE`);
         return "tie";
     }
     //error
     else {
-        console.log('*sigh*\n\nYou may only select "rock", "paper", or "scissors"...\n\nRefresh and try again');
+        console.log("error");
+        alert('*sigh*\n\nYou may only select "rock", "paper", or "scissors"...\n\nRefresh and try again');
         return "error";
     }  
 
@@ -115,8 +121,8 @@ function fiveRounds() {
         lossCounter = ++lossCounter;
     };
 
-    let finalOutcome = (winCounter > lossCounter) ? "You Win!" :
-    (winCounter < lossCounter) ? "You Lose!" :
+    let finalOutcome = (winCounter > lossCounter) ? "You are the champion!" :
+    (winCounter < lossCounter) ? "You are one pathetic loser!" :
     "Tie!";
 
     alert(`Wins: ${winCounter}\nLosses: ${lossCounter}\n\n${finalOutcome}` )
