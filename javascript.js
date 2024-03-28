@@ -27,6 +27,30 @@ function getPlayerChoice() {
     return (playerChoice.trim()).toUpperCase();
 }
 
+// Create buttons and add eventListen, make click run a game
+
+
+const buttons = document.querySelectorAll("button");
+buttons.forEach(button => {
+    button.addEventListener("click", function() {
+        let playerSelection = button.id.toUpperCase();
+        let computerSelection = getCompterChoice();
+        outcome(playerSelection, computerSelection);
+
+
+        console.log("playerSelection: " + playerSelection);
+        console.log("computerSelection: " + computerSelection);
+
+    });
+
+});
+
+
+
+
+
+ 
+
 //group all like outcomes (including user error)
 //alert verbose outcome and return/log simple outcome
 function outcome(player, computer) {
@@ -68,65 +92,70 @@ function outcome(player, computer) {
 function playRound() {
     let computerSelection = getCompterChoice();
     // console.log(computerSelection); //cheatmode
-    let playerSelection = getPlayerChoice();
+    // let playerSelection = getPlayerChoice();
     return outcome(playerSelection, computerSelection);
 }
 
 
-//plays 5 rounds (no loop)
-//counts only win or loss
-//shows final winner
-function fiveRounds() {
-    let winCounter = 0;
-    let lossCounter = 0
-    let round;
-    //1
-    round = playRound();
-    if (round === "win") {
-        winCounter = ++winCounter;
-    } 
-    if (round === "loss") {
-        lossCounter = ++lossCounter;
-    };
-    //2
-    round = playRound();
-    if (round === "win") {
-        winCounter = ++winCounter;
-    } 
-    if (round === "loss") {
-        lossCounter = ++lossCounter;
-    };
-    //3
-    round = playRound();
-    if (round === "win") {
-        winCounter = ++winCounter;
-    } 
-    if (round === "loss") {
-        lossCounter = ++lossCounter;
-    };
-    //4
-    round = playRound();
-    if (round === "win") {
-        winCounter = ++winCounter;
-    } 
-    if (round === "loss") {
-        lossCounter = ++lossCounter;
-    };
-    //5
-    round = playRound();
-    if (round === "win") {
-        winCounter = ++winCounter;
-    } 
-    if (round === "loss") {
-        lossCounter = ++lossCounter;
-    };
 
-    let finalOutcome = (winCounter > lossCounter) ? "You are the champion!" :
-    (winCounter < lossCounter) ? "You are one pathetic loser!" :
-    "Tie!";
 
-    alert(`Wins: ${winCounter}\nLosses: ${lossCounter}\n\n${finalOutcome}` )
-}
 
-//call all
-fiveRounds();
+
+
+// //plays 5 rounds (no loop)
+// //counts only win or loss
+// //shows final winner
+// function fiveRounds() {
+//     let winCounter = 0;
+//     let lossCounter = 0
+//     let round;
+//     //1
+//     round = playRound();
+//     if (round === "win") {
+//         winCounter = ++winCounter;
+//     } 
+//     if (round === "loss") {
+//         lossCounter = ++lossCounter;
+//     };
+//     //2
+//     round = playRound();
+//     if (round === "win") {
+//         winCounter = ++winCounter;
+//     } 
+//     if (round === "loss") {
+//         lossCounter = ++lossCounter;
+//     };
+//     //3
+//     round = playRound();
+//     if (round === "win") {
+//         winCounter = ++winCounter;
+//     } 
+//     if (round === "loss") {
+//         lossCounter = ++lossCounter;
+//     };
+//     //4
+//     round = playRound();
+//     if (round === "win") {
+//         winCounter = ++winCounter;
+//     } 
+//     if (round === "loss") {
+//         lossCounter = ++lossCounter;
+//     };
+//     //5
+//     round = playRound();
+//     if (round === "win") {
+//         winCounter = ++winCounter;
+//     } 
+//     if (round === "loss") {
+//         lossCounter = ++lossCounter;
+//     };
+
+//     let finalOutcome = (winCounter > lossCounter) ? "You are the champion!" :
+//     (winCounter < lossCounter) ? "You are one pathetic loser!" :
+//     "Tie!";
+
+//     alert(`Wins: ${winCounter}\nLosses: ${lossCounter}\n\n${finalOutcome}` )
+// }
+
+// //call all
+// fiveRounds();
