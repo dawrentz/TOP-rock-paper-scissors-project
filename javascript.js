@@ -47,7 +47,14 @@ buttons.forEach(button => {
 
 
 
+let playerScore = 0;
+let computerScore = 0;
 
+const playerScoreDisplay = document.querySelector("#playerScore");
+const computerScoreDisplay = document.querySelector("#computerScore");
+
+playerScoreDisplay.textContent = playerScore;
+computerScoreDisplay.textContent = computerScore;
 
 const outcomeBox = document.querySelector("#outcome");
 // outcomeBox.textContent = "Hello!";
@@ -65,6 +72,9 @@ function outcome(player, computer) {
         // return "win";    
         
         outcomeBox.textContent = `${player} beats ${computer}!\n\nYou have choosen... WISELY`;
+        playerScore = ++playerScore;
+        playerScoreDisplay.textContent = playerScore;
+
 
     } 
     //lose
@@ -77,6 +87,9 @@ function outcome(player, computer) {
         // return "loss";
 
         outcomeBox.textContent = `${computer} beats ${player}!\n\nYou have choosen... POORLY`;
+        computerScore = ++computerScore;
+        computerScoreDisplay.textContent = computerScore;
+
     } 
     //tie
     else if (player === computer) {
@@ -106,65 +119,20 @@ function playRound() {
 }
 
 
+const body = document.querySelector("body");
+const buttonsGroup = document.querySelector(".buttons");
 
-
-
-
-
-// //plays 5 rounds (no loop)
-// //counts only win or loss
-// //shows final winner
-// function fiveRounds() {
-//     let winCounter = 0;
-//     let lossCounter = 0
-//     let round;
-//     //1
-//     round = playRound();
-//     if (round === "win") {
-//         winCounter = ++winCounter;
-//     } 
-//     if (round === "loss") {
-//         lossCounter = ++lossCounter;
-//     };
-//     //2
-//     round = playRound();
-//     if (round === "win") {
-//         winCounter = ++winCounter;
-//     } 
-//     if (round === "loss") {
-//         lossCounter = ++lossCounter;
-//     };
-//     //3
-//     round = playRound();
-//     if (round === "win") {
-//         winCounter = ++winCounter;
-//     } 
-//     if (round === "loss") {
-//         lossCounter = ++lossCounter;
-//     };
-//     //4
-//     round = playRound();
-//     if (round === "win") {
-//         winCounter = ++winCounter;
-//     } 
-//     if (round === "loss") {
-//         lossCounter = ++lossCounter;
-//     };
-//     //5
-//     round = playRound();
-//     if (round === "win") {
-//         winCounter = ++winCounter;
-//     } 
-//     if (round === "loss") {
-//         lossCounter = ++lossCounter;
-//     };
-
-//     let finalOutcome = (winCounter > lossCounter) ? "You are the champion!" :
-//     (winCounter < lossCounter) ? "You are one pathetic loser!" :
-//     "Tie!";
-
-//     alert(`Wins: ${winCounter}\nLosses: ${lossCounter}\n\n${finalOutcome}` )
-// }
-
-// //call all
-// fiveRounds();
+document.querySelector(".buttons").addEventListener("click", function() {
+    if (playerScore == 5 || computerScore == 5) {
+        body.removeChild(buttonsGroup);
+        if (playerScore > computerScore) {
+            playerScoreDisplay.textContent = "WINNER!!!";
+            playerScoreDisplay.style.color = "red";
+        } else {
+            computerScoreDisplay.textContent = "WINNER!!!";
+            computerScoreDisplay.style.color = "red";
+        }
+        document.querySelector("span").textContent = "Hit refresh to play again";
+        document.querySelector("span").style.cssText = "color: green; font-size: x-large;";
+    }
+});
