@@ -38,8 +38,8 @@ buttons.forEach(button => {
         outcome(playerSelection, computerSelection);
 
 
-        console.log("playerSelection: " + playerSelection);
-        console.log("computerSelection: " + computerSelection);
+        // console.log("playerSelection: " + playerSelection);
+        // console.log("computerSelection: " + computerSelection);
 
     });
 
@@ -49,7 +49,8 @@ buttons.forEach(button => {
 
 
 
- 
+const outcomeBox = document.querySelector("#outcome");
+// outcomeBox.textContent = "Hello!";
 
 //group all like outcomes (including user error)
 //alert verbose outcome and return/log simple outcome
@@ -59,24 +60,32 @@ function outcome(player, computer) {
         (player === "PAPER" && computer === "ROCK") ||
         (player === "SCISSORS" && computer === "PAPER")    
     ) {
-        console.log("win"); 
-        alert(`${player} beats ${computer}!\n\nYou have choosen... WISELY`);          
-        return "win";      
+        // console.log("win"); 
+        // alert(`${player} beats ${computer}!\n\nYou have choosen... WISELY`);          
+        // return "win";    
+        
+        outcomeBox.textContent = `${player} beats ${computer}!\n\nYou have choosen... WISELY`;
+
     } 
     //lose
     else if ((computer === "ROCK" && player === "SCISSORS") ||
     (computer === "PAPER" && player === "ROCK") ||
     (computer === "SCISSORS" && player === "PAPER")    
     ) {
-        console.log("loss");
-        alert(`${computer} beats ${player}!\n\nYou have choosen... POORLY`);
-        return "loss";
+        // console.log("loss");
+        // alert(`${computer} beats ${player}!\n\nYou have choosen... POORLY`);
+        // return "loss";
+
+        outcomeBox.textContent = `${computer} beats ${player}!\n\nYou have choosen... POORLY`;
     } 
     //tie
     else if (player === computer) {
-        console.log("tie");
-        alert(`${computer} = ${player}\n\nMEDIOCRE`);
-        return "tie";
+        // console.log("tie");
+        // alert(`${computer} = ${player}\n\nMEDIOCRE`);
+        // return "tie";
+
+        outcomeBox.textContent = `${computer} = ${player}... \n\nMEDIOCRE`;
+
     }
     //error
     else {
