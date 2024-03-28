@@ -1,7 +1,7 @@
 * {
     /* outline: solid red; */
     text-align: center;
-
+    box-sizing: border-box;
 }
 
 .buttons {
@@ -35,13 +35,13 @@ h1 {
 }
 
 #scoreCard {
-    /* background-color: aqua; */
     display: flex;
     justify-content: space-around;
     font-size: x-large;
     text-align: center;
     border: solid grey 1px;
-
+    max-width: 500px;
+    margin: auto;
 }
 
 span {
